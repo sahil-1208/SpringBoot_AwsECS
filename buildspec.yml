@@ -5,9 +5,9 @@ phases:
       - echo Logging in to Amazon ECR....
       - aws --version
       #- $(aws ecr get-login --region ap-south-1 --no-include-email)
-      - (Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin 975050137351.dkr.ecr.eu-north-1.amazonaws.com
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 975050137351.dkr.ecr.eu-north-1.amazonaws.com
       - # Replace with this to your repository URI
-      - REPOSITORY_URI=975050137351.dkr.ecr.eu-north-1.amazonaws.com/springboot-ecr-demo
+      - REPOSITORY_URI=975050137351.dkr.ecr.eu-north-1.amazonaws.com/springboot-ecs-demo
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
